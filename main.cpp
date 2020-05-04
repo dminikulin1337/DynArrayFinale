@@ -5,12 +5,12 @@ void FillRand(int* arr, const int n);
 
 void Print(int* arr, const int n);
 
-int* PushBack(int* arr, int& n, int a);
-int* PushFront(int* arr, int& n, int a);
-int* Insert(int* arr, int& n, int a);
-int* PopBack(int* arr, int& n);
-int* PopFront(int* arr, int& n);
-int* Erase(int* arr, int& n);
+void PushBack(int*& arr, int& n, int a);
+void PushFront(int*& arr, int& n, int a);
+void Insert(int*& arr, int& n, int a);
+void PopBack(int*& arr, int& n);
+void PopFront(int*& arr, int& n);
+void Erase(int*& arr, int& n);
 
 //#define Insertion
 
@@ -29,7 +29,7 @@ void main()
 	cin >> a;
 #endif // Insertion
 
-	arr = Erase(arr, n);
+	Erase(arr, n);
 
 	Print(arr, n);
 	delete[] arr;
@@ -53,7 +53,7 @@ void Print(int* arr, const int n)
 	cout << endl;
 }
 
-int* PushBack(int* arr, int& n, int a)
+void PushBack(int*& arr, int& n, int a)
 {
 	int* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -64,10 +64,9 @@ int* PushBack(int* arr, int& n, int a)
 	arr = buffer;
 	arr[n] = a;
 	n++;
-	return arr;
 }
 
-int* PushFront(int* arr, int& n, int a)
+void PushFront(int*& arr, int& n, int a)
 {
 	int* extra = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -78,14 +77,14 @@ int* PushFront(int* arr, int& n, int a)
 	arr = extra;
 	arr[0] = a;
 	n++;
-	return arr;
 }
 
-int* Insert(int* arr, int& n, int a)
+void Insert(int*& arr, int& n, int a)
 {
 	int put;
-	cout << "In which spot do you want to put this number? "; cin >> put;
-	if (put > n) { return arr; }
+	do {
+		cout << "In which spot do you want to put this number? "; cin >> put;
+	} while (put>n);
 	int* second = new int[n + 1];
 	for (int i = 0; i < put; i++)
 	{
@@ -100,10 +99,9 @@ int* Insert(int* arr, int& n, int a)
 	arr = second;
 	arr[put] = a;
 	n++;
-	return arr;
 }
 
-int* PopBack(int* arr, int& n)
+void PopBack(int*& arr, int& n)
 {
 	int* buffer = new int[n];
 	for (int i = 0; i < n; i++)
@@ -113,10 +111,9 @@ int* PopBack(int* arr, int& n)
 	delete[] arr;
 	arr = buffer;
 	n--;
-	return arr;
 }
 
-int* PopFront(int* arr, int& n)
+void PopFront(int*& arr, int& n)
 {
 	int* extra = new int[n];
 	for (int i = 0; i < n; i++)
@@ -130,14 +127,14 @@ int* PopFront(int* arr, int& n)
 		arr[i] = arr[i + 1];
 	}
 	n--;
-	return arr;
 }
 
-int* Erase(int* arr, int& n)
+void Erase(int*& arr, int& n)
 {
 	int put;
-	cout << "Which number do you want to delete? "; cin >> put;
-	if (put > n) { return arr; }
+	do {
+		cout << "Which number do you want to delete? "; cin >> put;
+	} while (put > n);
 	int* second = new int[n];
 	for (int i = 0; i < n; i++)
 	{
@@ -150,5 +147,4 @@ int* Erase(int* arr, int& n)
 		arr[i] = arr[i + 1];
 	}
 	n--;
-	return arr;
 }
