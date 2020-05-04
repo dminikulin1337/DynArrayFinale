@@ -5,12 +5,12 @@ void FillRand(int* arr, const int n);
 
 void Print(int* arr, const int n);
 
-template<typename T>T PushBack(T arr, int& n, int a);
-template<typename T>T PushFront(T arr, int& n, int a);
-template<typename T>T Insert(T arr, int& n, int a);
-template<typename T>T PopBack(T arr, int& n);
-template<typename T>T PopFront(T arr, int& n);
-template<typename T>T Erase(T arr, int& n);
+template<typename T>T PushBack(T& arr, int& n, int a);
+template<typename T>T PushFront(T& arr, int& n, int a);
+template<typename T>T Insert(T& arr, int& n, int a);
+template<typename T>T PopBack(T& arr, int& n);
+template<typename T>T PopFront(T& arr, int& n);
+template<typename T>T Erase(T& arr, int& n);
 
 //#define Insertion
 
@@ -29,7 +29,7 @@ void main()
 	cin >> a;
 #endif // Insertion
 
-	arr = Erase(arr, n);
+	Erase(arr, n);
 
 	Print(arr, n);
 	delete[] arr;
@@ -54,7 +54,7 @@ void Print(int* arr, const int n)
 }
 
 template<typename T>
-T PushBack(T arr, int& n, int a)
+T PushBack(T& arr, int& n, int a)
 {
 	int* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -65,11 +65,10 @@ T PushBack(T arr, int& n, int a)
 	arr = buffer;
 	arr[n] = a;
 	n++;
-	return arr;
 }
 
 template<typename T>
-T PushFront(T arr, int& n, int a)
+T PushFront(T& arr, int& n, int a)
 {
 	int* extra = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -80,11 +79,10 @@ T PushFront(T arr, int& n, int a)
 	arr = extra;
 	arr[0] = a;
 	n++;
-	return arr;
 }
 
 template<typename T>
-T Insert(T arr, int& n, int a)
+T Insert(T& arr, int& n, int a)
 {
 	int put;
 	cout << "In which spot do you want to put this number? "; cin >> put;
@@ -103,11 +101,10 @@ T Insert(T arr, int& n, int a)
 	arr = second;
 	arr[put] = a;
 	n++;
-	return arr;
 }
 
 template<typename T>
-T PopBack(T arr, int& n)
+T PopBack(T& arr, int& n)
 {
 	int* buffer = new int[n];
 	for (int i = 0; i < n; i++)
@@ -117,11 +114,10 @@ T PopBack(T arr, int& n)
 	delete[] arr;
 	arr = buffer;
 	n--;
-	return arr;
 }
 
 template<typename T>
-T PopFront(T arr, int& n)
+T PopFront(T& arr, int& n)
 {
 	int* extra = new int[n];
 	for (int i = 0; i < n; i++)
@@ -135,11 +131,10 @@ T PopFront(T arr, int& n)
 		arr[i] = arr[i + 1];
 	}
 	n--;
-	return arr;
 }
 
 template<typename T>
-T Erase(T arr, int& n)
+T Erase(T& arr, int& n)
 {
 	int put;
 	cout << "Which number do you want to delete? "; cin >> put;
@@ -156,5 +151,4 @@ T Erase(T arr, int& n)
 		arr[i] = arr[i + 1];
 	}
 	n--;
-	return arr;
 }
