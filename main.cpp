@@ -5,12 +5,12 @@ void FillRand(int* arr, const int n);
 
 void Print(int* arr, const int n);
 
-int* PushBack(int* arr, int& n, int a);
-int* PushFront(int* arr, int& n, int a);
-int* Insert(int* arr, int& n, int a);
-int* PopBack(int* arr, int& n);
-int* PopFront(int* arr, int& n);
-int* Erase(int* arr, int& n);
+template<typename T>T PushBack(T arr, int& n, int a);
+template<typename T>T PushFront(T arr, int& n, int a);
+template<typename T>T Insert(T arr, int& n, int a);
+template<typename T>T PopBack(T arr, int& n);
+template<typename T>T PopFront(T arr, int& n);
+template<typename T>T Erase(T arr, int& n);
 
 //#define Insertion
 
@@ -53,7 +53,8 @@ void Print(int* arr, const int n)
 	cout << endl;
 }
 
-int* PushBack(int* arr, int& n, int a)
+template<typename T>
+T PushBack(T arr, int& n, int a)
 {
 	int* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -67,7 +68,8 @@ int* PushBack(int* arr, int& n, int a)
 	return arr;
 }
 
-int* PushFront(int* arr, int& n, int a)
+template<typename T>
+T PushFront(T arr, int& n, int a)
 {
 	int* extra = new int[n + 1];
 	for (int i = 0; i < n; i++)
@@ -81,7 +83,8 @@ int* PushFront(int* arr, int& n, int a)
 	return arr;
 }
 
-int* Insert(int* arr, int& n, int a)
+template<typename T>
+T Insert(T arr, int& n, int a)
 {
 	int put;
 	cout << "In which spot do you want to put this number? "; cin >> put;
@@ -103,7 +106,8 @@ int* Insert(int* arr, int& n, int a)
 	return arr;
 }
 
-int* PopBack(int* arr, int& n)
+template<typename T>
+T PopBack(T arr, int& n)
 {
 	int* buffer = new int[n];
 	for (int i = 0; i < n; i++)
@@ -116,7 +120,8 @@ int* PopBack(int* arr, int& n)
 	return arr;
 }
 
-int* PopFront(int* arr, int& n)
+template<typename T>
+T PopFront(T arr, int& n)
 {
 	int* extra = new int[n];
 	for (int i = 0; i < n; i++)
@@ -133,7 +138,8 @@ int* PopFront(int* arr, int& n)
 	return arr;
 }
 
-int* Erase(int* arr, int& n)
+template<typename T>
+T Erase(T arr, int& n)
 {
 	int put;
 	cout << "Which number do you want to delete? "; cin >> put;
